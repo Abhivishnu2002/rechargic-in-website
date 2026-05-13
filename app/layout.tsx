@@ -23,7 +23,12 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://rechargic.in",
   },
+  icons: {
+    icon: "/logo_symbol.png",
+    apple: "/logo_symbol.png",
+  },
 };
+
 
 export default function RootLayout({
   children,
