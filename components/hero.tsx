@@ -18,28 +18,43 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#030303]">
       <HeroScene />
-      
+
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background z-[1]" />
-      
+
       {/* Floating Brand Elements - Optimized */}
       <motion.div
-        animate={{ 
+        animate={{
           y: [0, -20, 0],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[15%] left-[10%] opacity-20 blur-sm pointer-events-none z-0 hidden lg:block"
+        className="absolute top-[15%] left-[10%] opacity-20 blur-sm pointer-events-none z-0 hidden lg:block will-change-transform"
       >
-        <Image src="/logo_symbol.png" alt="" width={120} height={120} />
+        <Image
+          src="/logo_symbol.png"
+          alt=""
+          width={120}
+          height={120}
+          sizes="120px"
+          className="h-auto"
+        />
       </motion.div>
 
       <motion.div
-        animate={{ 
+        animate={{
           y: [0, 30, 0],
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[20%] right-[12%] opacity-15 blur-md pointer-events-none z-0 hidden lg:block"
+        className="absolute bottom-[20%] right-[12%] opacity-15 blur-md pointer-events-none z-0 hidden lg:block will-change-transform"
       >
-        <Image src="/logo_symbol.png" alt="" width={200} height={200} priority />
+        <Image
+          src="/logo_symbol.png"
+          alt=""
+          width={200}
+          height={200}
+          priority
+          sizes="200px"
+          className="h-auto"
+        />
       </motion.div>
 
       <div className="container mx-auto px-6 relative z-10 text-center">
@@ -70,7 +85,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="max-w-2xl mx-auto text-lg md:text-xl text-white/40 mb-12 leading-relaxed"
         >
-          We are building the intelligent infrastructure for India's digital payments. 
+          We are building the intelligent infrastructure for India's digital payments.
           A unified, AI-powered ecosystem designed to simplify your everyday recharges and bills.
         </motion.p>
 
@@ -81,13 +96,13 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <Magnetic>
-            <Button size="lg" className="h-14 px-10 rounded-full bg-primary text-white hover:bg-primary/90 text-lg font-bold group shadow-[0_8px_30px_rgba(251,146,60,0.3)] border-t border-white/20">
+            <Button size="lg" className="h-16 px-10 rounded-full bg-primary text-white hover:bg-primary/90 text-lg font-bold group shadow-[0_8px_30px_rgba(251,146,60,0.3)] border-t border-white/20">
               Get Early Access
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Magnetic>
           <Magnetic>
-            <Button size="lg" variant="outline" className="h-14 px-10 rounded-full glass border-white/5 hover:bg-white/5 text-lg text-white/70">
+            <Button size="lg" variant="outline" className="h-16 px-10 rounded-full glass border-white/5 hover:bg-white/5 text-lg text-white/70">
               Explore Vision
             </Button>
           </Magnetic>

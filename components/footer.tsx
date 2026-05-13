@@ -46,7 +46,8 @@ export function Footer() {
                   alt="Rechargic Logo" 
                   width={220} 
                   height={55} 
-                  className="object-contain object-left"
+                  className="object-contain object-left h-auto"
+                  sizes="220px"
                 />
               </div>
             </Link>

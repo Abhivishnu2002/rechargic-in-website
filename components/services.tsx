@@ -112,6 +112,7 @@ export function Services() {
                       src={service.image} 
                       alt={service.title} 
                       fill 
+                      sizes="(max-width: 768px) 80px, 80px"
                       className={cn("object-contain", service.scale)}
                     />
                   </div>

@@ -51,8 +51,9 @@ export function Navbar() {
                 alt="Rechargic Logo" 
                 width={180} 
                 height={45} 
-                className="object-contain object-left"
+                className="object-contain object-left h-auto"
                 priority
+                sizes="180px"
               />
             </div>
           </Link>

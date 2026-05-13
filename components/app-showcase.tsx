@@ -46,26 +46,24 @@ export function AppShowcase() {
   const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const pin = gsap.fromTo(
-      sectionRef.current,
-      { translateX: 0 },
-      {
-        translateX: "-500vw", // 6 slides total (1 intro + 5 screens) -> -500vw to show all
+    let ctx = gsap.context(() => {
+      const slides = gsap.utils.toArray(".app-slide");
+      gsap.to(slides, {
+        xPercent: -100 * (slides.length - 1),
         ease: "none",
-        duration: 1,
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top top",
-          end: "3000 top",
-          scrub: 0.6,
+          end: () => `+=${window.innerWidth * 5}`,
+          scrub: 1,
           pin: true,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
         },
-      }
-    );
+      });
+    }, triggerRef);
 
-    return () => {
-      pin.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -74,9 +72,9 @@ export function AppShowcase() {
         <div ref={sectionRef} className="h-screen w-[600vw] flex flex-row relative">
           
           {/* Slide 0: Intro */}
-          <div className="h-screen w-screen flex items-center justify-center p-6 md:p-24 relative overflow-hidden">
+          <div className="app-slide h-screen w-screen flex items-center justify-center p-4 sm:p-12 lg:p-24 relative overflow-hidden">
             <div className="absolute inset-0 bg-noise opacity-[0.03]" />
-            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center px-6">
+            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center px-6">
               <div className="text-center lg:text-left order-2 lg:order-1">
                 <motion.span 
                   initial={{ opacity: 0 }}
@@ -85,7 +83,7 @@ export function AppShowcase() {
                 >
                   The Product reveal
                 </motion.span>
-                <h2 className="text-3xl sm:text-5xl lg:text-8xl font-bold mb-4 sm:mb-8 text-white leading-[1.1] tracking-tight">
+                <h2 className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-8 text-white leading-[1.1] tracking-tight">
                   A New Era of <br />
                   <span className="text-primary">Ecosystem</span> UX.
                 </h2>
@@ -96,8 +94,8 @@ export function AppShowcase() {
               </div>
               <div className="flex justify-center relative order-1 lg:order-2">
                 <div className="absolute inset-0 bg-primary/5 blur-[80px] rounded-full" />
-                <div className="w-[180px] sm:w-[240px] lg:w-[320px] h-[380px] sm:h-[500px] lg:h-[650px] bg-zinc-900 rounded-[2.5rem] sm:rounded-[3.5rem] border-4 border-white/5 p-2 sm:p-3 shadow-2xl relative z-10">
-                  <div className="w-full h-full bg-zinc-950 rounded-[2rem] sm:rounded-[2.8rem] overflow-hidden flex items-center justify-center border border-white/5">
+                <div className="w-[160px] sm:w-[220px] md:w-[280px] lg:w-[320px] h-[340px] sm:h-[460px] md:h-[580px] lg:h-[650px] bg-zinc-900 rounded-[2rem] sm:rounded-[3rem] border-4 border-white/5 p-2 sm:p-3 shadow-2xl relative z-10">
+                  <div className="w-full h-full bg-zinc-950 rounded-[1.8rem] sm:rounded-[2.5rem] overflow-hidden flex items-center justify-center border border-white/5">
                      <Image 
                         src="/logo_symbol.png" 
                         alt="Rechargic" 
@@ -113,24 +111,24 @@ export function AppShowcase() {
 
           {/* Slides 1-5: Application Screens */}
           {appScreens.map((screen, index) => (
-            <div key={index} className="h-screen w-screen flex items-center justify-center p-6 md:p-24 border-l border-white/5 relative overflow-hidden bg-[#050505]">
+            <div key={index} className="app-slide h-screen w-screen flex items-center justify-center p-4 sm:p-12 lg:p-24 border-l border-white/5 relative overflow-hidden bg-[#050505]">
               <div className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
-              <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center relative z-10 px-6">
+              <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center relative z-10 px-6">
                  
                  {/* Top/Right: Phone Frame with Real Screenshot */}
-                 <div className="order-1 lg:order-2 flex justify-center mt-12 lg:mt-0">
+                 <div className="order-1 lg:order-2 flex justify-center mt-8 lg:mt-0">
                     <div className="relative group">
                       {/* Ambient Glow - Reduced blur */}
                       <div className="absolute -inset-6 bg-primary/5 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                       
-                      <div className="w-[200px] sm:w-[260px] md:w-[300px] lg:w-[340px] h-[420px] sm:h-[540px] md:h-[620px] lg:h-[700px] bg-zinc-900 rounded-[2.5rem] sm:rounded-[3.5rem] border-[4px] sm:border-[6px] border-[#1a1a1a] p-1.5 sm:p-2 shadow-2xl relative z-10 overflow-hidden">
+                      <div className="w-[180px] sm:w-[240px] md:w-[280px] lg:w-[320px] h-[380px] sm:h-[500px] md:h-[580px] lg:h-[680px] bg-zinc-900 rounded-[2rem] sm:rounded-[3rem] border-[4px] sm:border-[6px] border-[#1a1a1a] p-1.5 sm:p-2 shadow-2xl relative z-10 overflow-hidden">
                           {/* Screen Content */}
-                          <div className="w-full h-full rounded-[1.8rem] sm:rounded-[2.8rem] overflow-hidden bg-black relative">
+                          <div className="w-full h-full rounded-[1.6rem] sm:rounded-[2.5rem] overflow-hidden bg-black relative">
                               <Image 
                                 src={screen.image}
                                 alt={screen.title}
                                 fill
-                                sizes="(max-width: 768px) 200px, 340px"
+                                sizes="(max-width: 768px) 180px, 320px"
                                 className="object-cover"
                                 priority={index === 0}
                                 loading={index === 0 ? "eager" : "lazy"}
@@ -141,20 +139,20 @@ export function AppShowcase() {
                           </div>
                           
                           {/* Device Hardware Detail (Dynamic Island style) */}
-                          <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-16 sm:w-24 h-4 sm:h-6 bg-black rounded-full z-20 border border-white/5" />
+                          <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-3 sm:h-5 bg-black rounded-full z-20 border border-white/5" />
                       </div>
                     </div>
                  </div>
 
                  {/* Bottom/Left: Content */}
                  <div className="order-2 lg:order-1 text-center lg:text-left">
-                    <span className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-white/10 bg-white/5 text-primary text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] mb-4 sm:mb-8 inline-block">
+                    <span className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-white/10 bg-white/5 text-primary text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.2em] mb-4 sm:mb-6 lg:mb-8 inline-block">
                       {screen.tag}
                     </span>
-                    <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold mb-4 sm:mb-8 text-white tracking-tight">
+                    <h3 className="text-2xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white tracking-tight">
                       {screen.title}
                     </h3>
-                    <p className="text-white/40 text-sm sm:text-lg lg:text-xl leading-relaxed max-w-md mx-auto lg:mx-0">
+                    <p className="text-white/40 text-xs sm:text-base lg:text-lg xl:text-xl leading-relaxed max-w-md mx-auto lg:mx-0">
                       {screen.description}
                     </p>
                  </div>

@@ -39,6 +39,7 @@ export default function Home() {
       <Suspense fallback={<div className="h-96 bg-[#030303]" />}>
         <Services />
       </Suspense>
+
       
       <Suspense fallback={<div className="h-96 bg-[#030303]" />}>
         <InvestorSection />
@@ -51,10 +52,11 @@ export default function Home() {
       <Suspense fallback={<div className="h-96 bg-[#030303]" />}>
         <TrustSection />
       </Suspense>
-      
+
       <Suspense fallback={<div className="h-96 bg-[#030303]" />}>
         <Waitlist />
       </Suspense>
+
       
       <Footer />
     </main>
