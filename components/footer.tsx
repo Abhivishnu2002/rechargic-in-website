@@ -7,16 +7,16 @@ const footerLinks = [
   {
     title: "Product",
     links: [
-      { name: "Features", href: "#" },
-      { name: "Services", href: "#services" },
-      { name: "Security", href: "#security" },
-      { name: "Waitlist", href: "#waitlist" },
+      { name: "Features", href: "/" },
+      { name: "Services", href: "/#services" },
+      { name: "Security", href: "/#security" },
+      { name: "Waitlist", href: "/#waitlist" },
     ],
   },
   {
     title: "Company",
     links: [
-      { name: "About Us", href: "#" },
+      { name: "About Us", href: "/" },
       { name: "Careers", href: "#" },
       { name: "Blog", href: "#" },
       { name: "Press", href: "#" },
@@ -25,10 +25,11 @@ const footerLinks = [
   {
     title: "Support",
     links: [
-      { name: "Help Center", href: "#" },
-      { name: "Contact", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
+      { name: "Help Center", href: "/support" },
+      { name: "Contact", href: "/support" },
+      { name: "Privacy Policy", href: "/privacy" },
+      { name: "Terms of Service", href: "/terms" },
+      { name: "Refund Policy", href: "/cancellation-refund" },
     ],
   },
 ];
@@ -75,12 +76,12 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-white/20 text-sm">
-            © 2026 Rechargic Inc. All rights reserved.
+            © 2026 IGNIVOX TECH PRIVATE LIMITED. All rights reserved.
           </div>
           <div className="flex gap-8 text-sm text-white/20">
-            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-white transition-colors">Cookies</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/cancellation-refund" className="hover:text-white transition-colors">Refund Policy</Link>
           </div>
         </div>
       </div>
